@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --color-deep-ocean: #061E26;
+  --color-voyage-teal: #0D7377;
+  --color-luxury-gold: #D4AF37;
+  --color-sage-white: #EAE8E1;
+  --color-success-green: #2E8B57;
+  --color-ember: #B85C2C;
+  --color-ice-teal: #7ECAC8;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-sage-white);
+  color: var(--color-deep-ocean);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-voyage-teal);
+  color: var(--color-sage-white);
+}
+
+.glass-dark {
+  background: rgba(6, 30, 38, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(126, 202, 200, 0.15);
+}
+
+.glass-light {
+  background: rgba(234, 232, 225, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(13, 115, 119, 0.12);
+}
+
+.gradient-hero {
+  background: linear-gradient(135deg, #061E26 0%, #0a2d38 40%, #0D7377 100%);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #f0d060 50%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-dark {
+  background-color: var(--color-deep-ocean);
+  color: var(--color-sage-white);
+}
+
+.section-light {
+  background-color: var(--color-sage-white);
+  color: var(--color-deep-ocean);
+}
