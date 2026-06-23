@@ -11,7 +11,7 @@ export const countries = [
   {
     name: 'Kyrgyzstan',
     flag: '🇰🇬',
-    tuition: '₹2.5 – 4.5 Lakh/yr',
+
     duration: '5–6 Years',
     recognition: 'NMC, WHO',
     gradient: 'from-teal-900/80 to-voyage-teal/60',
@@ -19,7 +19,7 @@ export const countries = [
   {
     name: 'Russia',
     flag: '🇷🇺',
-    tuition: '₹3 – 6 Lakh/yr',
+  
     duration: '6 Years',
     recognition: 'NMC, WHO, ECFMG',
     gradient: 'from-red-900/40 to-voyage-teal/60',
@@ -27,34 +27,19 @@ export const countries = [
   {
     name: 'Kazakhstan',
     flag: '🇰🇿',
-    tuition: '₹3 – 5 Lakh/yr',
+   
     duration: '5 Years',
     recognition: 'NMC, WHO',
     gradient: 'from-blue-900/40 to-voyage-teal/60',
   },
-  {
-    name: 'Georgia',
-    flag: '🇬🇪',
-    tuition: '₹4 – 6 Lakh/yr',
-    duration: '6 Years',
-    recognition: 'NMC, WHO',
-    gradient: 'from-red-800/30 to-voyage-teal/60',
-  },
+  
   {
     name: 'Uzbekistan',
     flag: '🇺🇿',
-    tuition: '₹2.5 – 4 Lakh/yr',
+    
     duration: '5–6 Years',
     recognition: 'NMC, WHO',
     gradient: 'from-green-900/40 to-voyage-teal/60',
-  },
-  {
-    name: 'Philippines',
-    flag: '🇵🇭',
-    tuition: '₹3.5 – 5.5 Lakh/yr',
-    duration: '5.5 Years',
-    recognition: 'NMC, WHO',
-    gradient: 'from-yellow-900/30 to-voyage-teal/60',
   },
 ]
 
@@ -144,7 +129,7 @@ export const universities = [
     name: 'Kyrgyz State Medical Academy',
     country: 'Kyrgyzstan',
     recognition: 'NMC, WHO',
-    tuition: '₹3 – 4 Lakh/yr',
+
     duration: '6 Years',
     color: 'from-voyage-teal/30 to-deep-ocean',
   },
@@ -152,7 +137,6 @@ export const universities = [
     name: 'Kazan Federal University',
     country: 'Russia',
     recognition: 'NMC, WHO, ECFMG',
-    tuition: '₹4 – 5.5 Lakh/yr',
     duration: '6 Years',
     color: 'from-red-900/30 to-deep-ocean',
   },
@@ -160,15 +144,13 @@ export const universities = [
     name: 'Astana Medical University',
     country: 'Kazakhstan',
     recognition: 'NMC, WHO',
-    tuition: '₹3.5 – 4.5 Lakh/yr',
     duration: '5 Years',
     color: 'from-blue-900/30 to-deep-ocean',
   },
   {
-    name: 'Tbilisi State Medical University',
-    country: 'Georgia',
+    name: 'Samarkand State Medical University',
+    country: 'Uzbekistan',
     recognition: 'NMC, WHO',
-    tuition: '₹5 – 6 Lakh/yr',
     duration: '6 Years',
     color: 'from-green-900/20 to-deep-ocean',
   },

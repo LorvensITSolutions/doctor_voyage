@@ -55,10 +55,7 @@ export default function UniversityHighlights() {
                     <FaCertificate className="shrink-0 text-luxury-gold" size={14} />
                     {uni.recognition}
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-sage-white/60">
-                    <FaRupeeSign className="shrink-0 text-ice-teal" size={14} />
-                    {uni.tuition}
-                  </div>
+                  
                   <div className="flex items-center gap-2 text-sm text-sage-white/60">
                     <FaClock className="shrink-0 text-ice-teal" size={14} />
                     {uni.duration}
