@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
 import { navLinks } from '../data/content'
@@ -9,6 +10,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const scrollTo = useScrollTo()
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isHome = location.pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -17,24 +21,24 @@ export default function Navbar() {
   }, [])
 
   const handleNav = (href) => {
-    scrollTo(href)
+    if (isHome) {
+      scrollTo(href)
+    } else {
+      navigate('/', { state: { scrollTo: href } })
+    }
     setMobileOpen(false)
   }
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-dark shadow-lg shadow-deep-ocean/20' : 'bg-transparent'
+        scrolled || !isHome ? 'glass-dark shadow-lg shadow-deep-ocean/20' : 'bg-transparent'
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <a
-          href="#home"
-          onClick={(e) => { e.preventDefault(); handleNav('#home') }}
-          className="flex items-center"
-        >
+        <Link to="/" className="flex items-center" onClick={() => setMobileOpen(false)}>
           <Logo className="h-11 sm:h-12" />
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (

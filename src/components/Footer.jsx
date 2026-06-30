@@ -1,17 +1,30 @@
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { navLinks, countries, contactInfo } from '../data/content'
 import SocialLinks from './SocialLinks'
 import Logo from './Logo'
 import { useScrollTo } from '../hooks/useAnimations'
 
-export default function Footer({ onPrivacy, onTerms }) {
+export default function Footer() {
   const scrollTo = useScrollTo()
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const handleSectionNav = (href) => {
+    if (location.pathname === '/') {
+      scrollTo(href)
+    } else {
+      navigate('/', { state: { scrollTo: href } })
+    }
+  }
 
   return (
     <footer className="section-dark border-t border-ice-teal/10 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Logo className="h-14" />
+            <Link to="/" className="inline-block">
+              <Logo className="h-14" />
+            </Link>
             <p className="mt-4 text-sm leading-relaxed text-sage-white/50">
               Your trusted partner for MBBS abroad admissions. Expert guidance from counseling to enrollment.
             </p>
@@ -26,7 +39,7 @@ export default function Footer({ onPrivacy, onTerms }) {
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <button
-                    onClick={() => scrollTo(link.href)}
+                    onClick={() => handleSectionNav(link.href)}
                     className="text-sm text-sage-white/50 transition-colors hover:text-ice-teal"
                   >
                     {link.label}
@@ -42,7 +55,7 @@ export default function Footer({ onPrivacy, onTerms }) {
               {countries.map((c) => (
                 <li key={c.name}>
                   <button
-                    onClick={() => scrollTo('#countries')}
+                    onClick={() => handleSectionNav('#countries')}
                     className="text-sm text-sage-white/50 transition-colors hover:text-ice-teal"
                   >
                     {c.name}
@@ -67,18 +80,18 @@ export default function Footer({ onPrivacy, onTerms }) {
             &copy; 2026 Doctor Voyage. All Rights Reserved.
           </p>
           <div className="flex gap-6">
-            <button
-              onClick={onPrivacy}
+            <Link
+              to="/privacy"
               className="text-sm text-sage-white/40 transition-colors hover:text-ice-teal"
             >
               Privacy Policy
-            </button>
-            <button
-              onClick={onTerms}
+            </Link>
+            <Link
+              to="/terms"
               className="text-sm text-sage-white/40 transition-colors hover:text-ice-teal"
             >
               Terms &amp; Conditions
-            </button>
+            </Link>
           </div>
         </div>
       </div>

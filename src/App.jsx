@@ -1,52 +1,16 @@
-import { useState } from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Countries from './components/Countries'
-import WhyChoose from './components/WhyChoose'
-import AdmissionProcess from './components/AdmissionProcess'
-import SuccessMetrics from './components/SuccessMetrics'
-import SuccessStories from './components/SuccessStories'
-import UniversityHighlights from './components/UniversityHighlights'
-import FAQ from './components/FAQ'
-import LeadForm from './components/LeadForm'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import WhatsAppFloat from './components/WhatsAppFloat'
-import StickyCounseling from './components/StickyCounseling'
-import Modal from './components/Modal'
-import PolicyContent from './components/PolicyContent'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import PrivacyPage from './pages/PrivacyPage'
+import TermsPage from './pages/TermsPage'
 
 export default function App() {
-  const [privacyOpen, setPrivacyOpen] = useState(false)
-  const [termsOpen, setTermsOpen] = useState(false)
-
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Countries />
-        <WhyChoose />
-        <AdmissionProcess />
-        <SuccessMetrics />
-        <SuccessStories />
-        <UniversityHighlights />
-        <FAQ />
-        <LeadForm />
-        <Contact />
-      </main>
-      <Footer onPrivacy={() => setPrivacyOpen(true)} onTerms={() => setTermsOpen(true)} />
-      <WhatsAppFloat />
-      <StickyCounseling />
-
-      <Modal isOpen={privacyOpen} onClose={() => setPrivacyOpen(false)} title="Privacy Policy">
-        <PolicyContent type="privacy" />
-      </Modal>
-      <Modal isOpen={termsOpen} onClose={() => setTermsOpen(false)} title="Terms & Conditions">
-        <PolicyContent type="terms" />
-      </Modal>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
