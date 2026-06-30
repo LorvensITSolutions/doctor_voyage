@@ -2,13 +2,15 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { HiArrowRight } from 'react-icons/hi'
 import { FaShieldAlt } from 'react-icons/fa'
-import { neetOptions, countryOptions } from '../data/content'
+import { neetOptions, countryOptions, formSubmitUrl, formSubmitAjaxUrl } from '../data/content'
 import { fadeUp } from '../utils/animations'
 import { useSectionInView } from '../hooks/useAnimations'
 
 export default function LeadForm() {
   const [ref, isInView] = useSectionInView()
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -21,9 +23,32 @@ export default function LeadForm() {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    setError('')
+
+    try {
+      const response = await fetch(formSubmitAjaxUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: 'New Free Counseling Request - Doctor Voyage',
+          _template: 'table',
+          ...form,
+        }),
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+      } else {
+        setError('Something went wrong. Please try again or contact us directly.')
+      }
+    } catch {
+      setError('Unable to submit your request. Please try again or reach us on WhatsApp.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -69,9 +94,14 @@ export default function LeadForm() {
               </div>
             ) : (
               <form
+                action={formSubmitUrl}
+                method="POST"
                 onSubmit={handleSubmit}
                 className="rounded-2xl border border-voyage-teal/10 bg-white p-8 shadow-xl shadow-voyage-teal/5"
               >
+                <input type="hidden" name="_subject" value="New Free Counseling Request - Doctor Voyage" />
+                <input type="hidden" name="_template" value="table" />
+
                 <div className="space-y-5">
                   <div>
                     <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-deep-ocean">
@@ -157,11 +187,15 @@ export default function LeadForm() {
                     </div>
                   </div>
                 </div>
+                {error && (
+                  <p className="mt-4 text-sm text-ember">{error}</p>
+                )}
                 <button
                   type="submit"
-                  className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-luxury-gold py-4 text-base font-semibold text-deep-ocean transition-all hover:bg-luxury-gold/90 hover:shadow-lg hover:shadow-luxury-gold/20"
+                  disabled={submitting}
+                  className="group mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-luxury-gold py-4 text-base font-semibold text-deep-ocean transition-all hover:bg-luxury-gold/90 hover:shadow-lg hover:shadow-luxury-gold/20 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  Get Free Counseling
+                  {submitting ? 'Submitting...' : 'Get Free Counseling'}
                   <HiArrowRight className="transition-transform group-hover:translate-x-1" />
                 </button>
               </form>

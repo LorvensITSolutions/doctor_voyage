@@ -203,6 +203,10 @@ export const contactInfo = {
   address: 'Suite 204, Medical Plaza, Connaught Place, New Delhi – 110001, India',
 }
 
+export const formSubmitEmail = 'doctorvoyagembbs@gmail.com'
+export const formSubmitUrl = `https://formsubmit.co/${formSubmitEmail}`
+export const formSubmitAjaxUrl = `https://formsubmit.co/ajax/${formSubmitEmail}`
+
 export const neetOptions = ['Qualified', 'Not Qualified', 'Appearing in 2026', 'Not Applicable']
 
 export const countryOptions = countries.map((c) => c.name)
